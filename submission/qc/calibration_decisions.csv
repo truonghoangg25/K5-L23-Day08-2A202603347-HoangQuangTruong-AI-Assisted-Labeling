@@ -1,1 +1,4 @@
 case_id,image,nguon,van_de,quyet_dinh,quy_tac_ghi_vao_guideline,phien_ban_guideline
+CAL-01,img_013,loi_may,YOLO26 nham xe ba banh vao cac lop COCO,Khong tu dong chap nhan lop COCO; doi chieu hinh dang va dung YOLOE nhu nguon bo sung,Box YOLOE van phai duoc nguoi kiem tra; khong dung threshold de sua loi sai ngu nghia,v1.1
+CAL-02,img_018,bay_lot,Bo sot person trong review mu,Quet toan bo anh truoc khi xem cac box duoc de xuat; chu dong tim vung khong co pre-label,Checklist review phai co buoc tim doi tuong bi bo sot,v1.1
+CAL-03,img_013,cau_hoi_mo,Ranh gioi mask kinh va cua so chua ro,Chua chot quy tac; can them vi du va thong nhat giua nguoi gan nhan,Khong tu suy dien ranh gioi mask khi guideline chua quy dinh ro; ghi nhan de calibration tiep,v1.1
