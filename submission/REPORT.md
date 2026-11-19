@@ -6,9 +6,10 @@
 
 | Lớp | Model + cỡ | Ngưỡng | Vì sao |
 |---|---|---|---|
-| person / bicycle / motorbike / car / bus / truck | YOLO26-m | person 0.35; motorbike 0.50; car 0.25; các lớp còn lại giữ mặc định | r01/r02; threshold sweep trên 4 ảnh Gold. Bicycle có 3, bus 0, truck 1 đối tượng Gold nên chưa đủ dữ liệu chọn ngưỡng riêng. |
+| person / bicycle / motorbike / car / bus / truck | YOLO26-m | person 0.35; motorbike 0.50; các lớp còn lại giữ mặc định | r01/r02; threshold sweep trên 4 ảnh Gold. Bicycle có 3, bus 0, truck 1 đối tượng Gold nên chưa đủ dữ liệu chọn ngưỡng riêng. |
 | three_wheeler | YOLOE-s | 0.15 | r03; threshold sweep trên 4 ảnh Gold: recall 100%, precision 78%, 7 đối tượng Gold. |
 
+- Đối chiếu log YOLOE: `submission/model_log.csv` và `work/prelabel/t_yoloe/run.json` cùng ghi pilot `r03`, `conf=0.25`. `work/runs.csv` có dòng pilot trùng ID `r04` với lần chạy SAM và đường dẫn output khác; không dùng dòng đó làm nguồn xác định ID YOLOE.
 - Recipe merge tái chạy gần nhất:
   `python scripts/merge_prelabels.py work/prelabel/yoloe_all/pre.coco.json work/prelabel/y26_all/pre.coco.json --iou 0.6 --conf 0.25 --split batch,gold --out work/prelabel/merged_review/pre.coco.json`
 - Lần chạy lại tạo 647 box/28 ảnh; không khẳng định đây là file lịch sử đã import CVAT. File import lịch sử có 464 annotations/24 ảnh; `pre_traps.coco.json` có 531/28 ảnh.
@@ -58,8 +59,9 @@ Do giới hạn thời gian, áp dụng phương án rút gọn trong GUIDE: th�
 | img_003 | SAM 2.1 Base | 1 positive | 5,789 px (~0.8%) | Mask nhỏ; chưa thể kết luận đã bao trọn xe hoặc phần bị che | `occluded_img003.jpg` |
 | img_008 | SAM 2.1 Base | 1 positive | 11,718 px (~1.7%) | Mask nhỏ; chưa thể kết luận đã bao trọn xe/hàng hóa | `cargo_tricycle_img008.jpg` |
 | img_013 | SAM 2.1 Tiny | 2 positive + 1 negative | 275,126 px (~39.4%) | Ảnh đối chứng phiên bản; cùng cấu hình click với thử nghiệm Tiny trước đó | `tuktuk_img013_tiny.jpg` |
+| img_013 | SAM 2.1 Base | 2 positive + 1 negative | Chưa ghi nhận | Kết quả click prompt từ notebook Cell 19; chưa xác nhận trực quan ranh giới mask | `tuktuk_img013.jpg` |
 
-- Tổng cộng có 6 ảnh mask trên 3 ảnh nguồn. Đây là các cấu hình thử nghiệm, không phải bằng chứng đã hoàn thành mask chuẩn cho ba loại vật thể độc lập.
+- Tổng cộng có 7 ảnh mask trên 3 ảnh nguồn. Đây là các cấu hình thử nghiệm, không phải bằng chứng đã hoàn thành mask chuẩn cho ba loại vật thể độc lập.
 - Chưa xác nhận chắc chắn mask có bao gồm người lái hoặc hàng hóa; không suy diễn loại xe cụ thể chỉ từ tên lớp `three_wheeler`.
 - Đối chiếu guideline mục 4.2: cần kiểm tra mask sau mỗi click; không mặc định negative click luôn thu hẹp mask. Ranh giới kính/cửa sổ vẫn chưa chốt, ghi nhận tại CAL-03.
 - Interactor SAM trong CVAT: chưa có kết quả kiểm thử đủ chắc chắn để kết luận hoạt động hay không.
