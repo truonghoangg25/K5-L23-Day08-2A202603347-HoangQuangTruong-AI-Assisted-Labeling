@@ -31,6 +31,9 @@
 - Lớp có rủi ro sai ngữ nghĩa đáng chú ý: three_wheeler và các lớp phương tiện COCO gần giống. img_013 được ghi nhận trong calibration; chưa có thống kê lỗi theo lớp đủ chắc chắn để xếp hạng lớp tệ nhất.
 - So với Gold: precision 67.8% (40 TP / 59 dự đoán được đối chiếu); recall 90.9% (40 TP / 44 đối tượng Gold). Gold có 47 annotations, gồm 44 đối tượng được chấm và 3 ignore_region. Nguồn: `submission/qc/review_stats.md`.
 
+- Ví dụ sai sót trong calibration YOLOE-S: với lớp `three_wheeler` tại confidence threshold 0.15, mô hình đạt 7 TP, 2 FP và 0 FN trên 7 đối tượng Gold (precision 77.8%, recall 100%). Hai FP cho thấy mô hình vẫn có thể đề xuất nhãn sai dù không bỏ sót đối tượng Gold trong mẫu thử. Nếu chấp nhận tự động, các dự đoán sai có thể trở thành nhãn nhiễu. Cần người gán nhãn kiểm tra từng box và loại bỏ dự đoán không đúng. Ngưỡng này ưu tiên recall, không bảo đảm mọi dự đoán đều chính xác. Đây là kết quả calibration riêng, không phải hai box `deleted` trong thống kê batch review ở trên. Nguồn: `submission/qc/threshold_sweep.csv`.
+
+
 ## 3. Thiên kiến tự động hóa và ảnh bẫy
 
 - Review mù ban đầu bắt được **4/12 bẫy = 33.3%**, thấp hơn mục tiêu 80%. Theo loại: missing 0/3; loose 0/3; wrong_class 1/3; extra 3/3. Các bẫy bị lọt: img_018, img_023, img_034, img_008, img_028, img_025, img_014, img_021.
