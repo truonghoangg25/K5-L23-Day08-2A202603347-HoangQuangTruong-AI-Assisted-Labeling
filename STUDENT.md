@@ -5,7 +5,7 @@
 - Lớp (L2 / L3 / khác): E403 — AI.20K cohort 5 (L2-3)
 - Tài khoản GitHub: truonghoangg25
 - Repo bài nộp (URL): https://github.com/truonghoangg25/K5-L23-Day08-2A202603347-HoangQuangTruong-AI-Assisted-Labeling
-- Commit chốt bài (hash): a48151a — baseline trước các commit hoàn thiện hồ sơ; cập nhật hash cuối sau khi commit.
+- Commit mốc hoàn thiện nội dung: 20e612d (không bao gồm thay đổi metadata trong STUDENT.md).
 - Máy: Windows + WSL2 Ubuntu; NVIDIA GeForce RTX 3050 Laptop GPU, 4 GB VRAM; PyTorch CUDA hoạt động.
 - CVAT (Docker): v2.74.1; http://localhost:8080
 
